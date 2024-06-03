@@ -1,0 +1,10 @@
+{
+  "name": "binary-tree",
+  "version": "1.0.0",
+  "description": "A simple balanced binary search tree written in JavaScript",
+  "main": "index.js",
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "GPL-3.0-only"
+}
