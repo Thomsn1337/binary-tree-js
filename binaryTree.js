@@ -101,6 +101,31 @@ class Tree {
     }
 
     /**
+     * @param {Function | null} callback
+     */
+    levelOrder(callback = null) {
+        if (!this.root) return;
+
+        const queue = [this.root];
+        const nodes = [];
+
+        while (queue.length) {
+            const current = queue.shift();
+
+            if (current) {
+                nodes.push(current.data);
+
+                if (current.left) queue.push(current.left);
+                if (current.right) queue.push(current.right);
+
+                if (callback) callback(current);
+            }
+        }
+
+        if (!callback) return nodes;
+    }
+
+    /**
      * @param {TreeNode} node
      *
      * @returns {number}
