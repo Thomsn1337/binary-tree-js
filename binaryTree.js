@@ -86,6 +86,21 @@ class Tree {
     }
 
     /**
+     * @param {number} val
+     * @param {TreeNode | null} [node=this.root]
+     *
+     * @returns {TreeNode | null}
+     */
+    find(val, node = this.root) {
+        if (node === null || val === node.data) return node;
+
+        if (val < node.data) node = this.find(val, node.left);
+        else if (val > node.data) node = this.find(val, node.right);
+
+        return node;
+    }
+
+    /**
      * @param {TreeNode} node
      *
      * @returns {number}
