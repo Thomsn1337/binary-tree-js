@@ -1,4 +1,5 @@
 import mergeSort from "./mergeSort.js";
+
 class TreeNode {
     /**
      * @constructor
@@ -45,6 +46,21 @@ class Tree {
         const node = new TreeNode(arr[mid]);
         node.left = this.buildTree(arr, start, mid - 1);
         node.right = this.buildTree(arr, mid + 1, end);
+
+        return node;
+    }
+
+    /**
+     * @param {number} val
+     * @param {TreeNode | null} [node=this.root]
+     *
+     * @returns {TreeNode}
+     */
+    insert(val, node = this.root) {
+        if (node === null) return new TreeNode(val);
+
+        if (val < node.data) node.left = this.insert(val, node.left);
+        else if (val > node.data) node.right = this.insert(val, node.right);
 
         return node;
     }
