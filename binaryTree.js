@@ -48,6 +48,35 @@ class Tree {
 
         return node;
     }
+
+    /**
+     * @param {TreeNode | null} [node=this.root]
+     * @param {string} [prefix=""]
+     * @param {boolean} [isLeft=true]
+     */
+    prettyPrint(node = this.root, prefix = "", isLeft = true) {
+        if (node === null) {
+            return;
+        }
+
+        if (node.right !== null) {
+            this.prettyPrint(
+                node.right,
+                `${prefix}${isLeft ? "│   " : "    "}`,
+                false,
+            );
+        }
+
+        console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+
+        if (node.left !== null) {
+            this.prettyPrint(
+                node.left,
+                `${prefix}${isLeft ? "    " : "│   "}`,
+                true,
+            );
+        }
+    }
 }
 
 export default Tree;
