@@ -66,6 +66,42 @@ class Tree {
     }
 
     /**
+     * @param {number} val
+     * @param {TreeNode | null} [node=this.root]
+     */
+    delete(val, node = this.root) {
+        if (node === null) return node;
+
+        if (val < node.data) node.left = this.delete(val, node.left);
+        else if (val > node.data) node.right = this.delete(val, node.right);
+        else {
+            if (node.left === null) return node.right;
+            else if (node.right === null) return node.left;
+
+            node.data = this.#minValue(node.right);
+            node.right = this.delete(node.data, node.right);
+        }
+
+        return node;
+    }
+
+    /**
+     * @param {TreeNode} node
+     *
+     * @returns {number}
+     */
+    #minValue(node) {
+        let min = node.data;
+
+        while (node.left !== null) {
+            min = node.left.data;
+            node = node.left;
+        }
+
+        return min;
+    }
+
+    /**
      * @param {TreeNode | null} [node=this.root]
      * @param {string} [prefix=""]
      * @param {boolean} [isLeft=true]
