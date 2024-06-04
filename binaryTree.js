@@ -237,6 +237,24 @@ class Tree {
     }
 
     /**
+     * @param {TreeNode | null} [node=this.root]
+     *
+     * @returns {boolean}
+     */
+    isBalanced(node = this.root) {
+        if (!node) return true;
+
+        const leftHeight = this.height(node.left);
+        const rightHeight = this.height(node.right);
+
+        return (
+            Math.abs(leftHeight - rightHeight) <= 1 &&
+            this.isBalanced(node.left) &&
+            this.isBalanced(node.right)
+        );
+    }
+
+    /**
      * @param {TreeNode} node
      *
      * @returns {number}
