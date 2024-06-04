@@ -206,7 +206,7 @@ class Tree {
      *
      * @returns {number}
      */
-    height(node) {
+    height(node = this.root) {
         if (!node) return -1;
 
         const leftHeight = this.height(node.left);
@@ -252,6 +252,12 @@ class Tree {
             this.isBalanced(node.left) &&
             this.isBalanced(node.right)
         );
+    }
+
+    rebalance() {
+        const arr = this.inOrder();
+
+        if (arr) this.root = this.buildTree(arr);
     }
 
     /**
