@@ -126,6 +126,31 @@ class Tree {
     }
 
     /**
+     * @param {Function | null} [callback=null]
+     */
+    preOrder(callback = null) {
+        const nodes = [];
+        const root = this.root;
+
+        /**
+         * @param {TreeNode | null} [node=this.root]
+         */
+        function traverse(node) {
+            if (!node) return;
+
+            nodes.push(node.data);
+            if (callback) callback(node);
+
+            traverse(node.left);
+            traverse(node.right);
+        }
+
+        traverse(root);
+
+        if (!callback) return nodes;
+    }
+
+    /**
      * @param {TreeNode} node
      *
      * @returns {number}
