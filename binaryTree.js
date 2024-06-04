@@ -217,6 +217,27 @@ class Tree {
 
     /**
      * @param {TreeNode} node
+     * @param {TreeNode | null} [root=this.root]
+     *
+     * @returns {number}
+     */
+    depth(node, root = this.root) {
+        if (!root) return -1;
+
+        let dist = -1;
+
+        if (
+            node === root ||
+            (dist = this.depth(node, root.left)) >= 0 ||
+            (dist = this.depth(node, root.right)) >= 0
+        )
+            return dist + 1;
+
+        return dist;
+    }
+
+    /**
+     * @param {TreeNode} node
      *
      * @returns {number}
      */
