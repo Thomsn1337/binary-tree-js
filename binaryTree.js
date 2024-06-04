@@ -202,6 +202,20 @@ class Tree {
     }
 
     /**
+     * @param {TreeNode | null} node
+     *
+     * @returns {number}
+     */
+    height(node) {
+        if (!node) return -1;
+
+        const leftHeight = this.height(node.left);
+        const rightHeight = this.height(node.right);
+
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    /**
      * @param {TreeNode} node
      *
      * @returns {number}
